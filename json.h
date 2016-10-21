@@ -189,7 +189,7 @@ static inline void read(char *buffer, int *length, entity *entities,
                 string = get_string(buffer, index, length);
                 if (strcmp(string, "diffusecolor") == 0) {
                   entities[*ent_index].sphere.diffuse_color = get_vect(buffer, index, length);
-                } else if (strcmp(string, "specularcolor") == 0) {
+              } else if (strcmp(string, "specularcolor") == 0) {
                   entities[*ent_index].sphere.specular_color = get_vect(buffer, index, length);
                 } else if (strcmp(string, "position") == 0) {
                   entities[*ent_index].sphere.position = get_vect(buffer, index, length);
@@ -220,7 +220,7 @@ static inline void read(char *buffer, int *length, entity *entities,
                 string = get_string(buffer, index, length);
                 if (strcmp(string, "specularcolor") == 0) {
                   entities[*ent_index].plane.specular_color = get_vect(buffer, index, length);
-                } else if (strcmp(string, "diffusecolor") == 0) {
+              } else if (strcmp(string, "diffusecolor") == 0) {
                   entities[*ent_index].plane.diffuse_color = get_vect(buffer, index, length);
                 } else if (strcmp(string, "position") == 0) {
                   entities[*ent_index].plane.position = get_vect(buffer, index, length);
@@ -442,11 +442,11 @@ static inline double get_num(char *buffer, int *index, int *length) {
 
 // Determines the type of entity that is being presented
 static inline int get_entity_type(char *string) {
-  if (strcmp(string, "plane") == 0) {
+  if (strcmp(string, "camera") == 0) {
     return 1;
   } else if (strcmp(string, "sphere") == 0) {
     return 2;
-} else if (strcmp(string, "camera") == 0) {
+} else if (strcmp(string, "plane") == 0) {
     return 3;
   } else if (strcmp(string, "light") == 0) {
     return 4;

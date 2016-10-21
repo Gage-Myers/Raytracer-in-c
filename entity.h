@@ -4,12 +4,11 @@
 typedef struct {
     int type;
     union {
+
         struct {
-            double *position;
-            double *normal;
-            double *diffuse_color;
-            double *specular_color;
-        } plane; // Type: 3
+            double width;
+            double height;
+        } camera; // Type: 1
 
         struct {
             double radius;
@@ -19,9 +18,12 @@ typedef struct {
         } sphere; // Type: 2
 
         struct {
-            double width;
-            double height;
-        } camera; // Type: 1
+            double *position;
+            double *normal;
+            double *diffuse_color;
+            double *specular_color;
+        } plane; // Type: 3
+
 
         // This final struct is a dynamic
         // Light that will be able to be
