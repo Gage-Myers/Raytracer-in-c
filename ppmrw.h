@@ -12,6 +12,7 @@ void read3(FILE *in, pixel *buffer, int *width, int *height, int *maxColor);
 void read6(FILE *in, pixel *buffer, int *width, int *height, int *maxColor);
 int initiate(FILE *fp, int *width, int *height, int *maxColor, int *ver);
 void fill(pixel *buffer, int *width, int *height);
+double clamp(double value);
 
 
 void fill(pixel *buffer, int *width, int *height) {
@@ -77,7 +78,7 @@ void read3(FILE *in, pixel *buffer, int *width, int *height, int *maxColor) {
   int c, r, g, b;
   int i = 0;
   int length = (*width) * (*height);
- 
+
   while (i < length) {
       if ((c = fgetc(in)) != EOF) {
         // Return the character
@@ -116,7 +117,7 @@ void read6(FILE *in, pixel *buffer, int *width, int *height, int *maxColor) {
 void write3(FILE *out, pixel *buffer, int *width, int *height, int *maxColor, int *ver) {
   int i = 0, lineLen = 1;
   int length = (*width) * (*height);
-  fprintf(out, "P%d \n#Converted by Charles Duso\n%d %d %d\n", *ver, *width, *height, *maxColor);
+  fprintf(out, "P%d \n#Converted by Gage Myers\n%d %d %d\n", *ver, *width, *height, *maxColor);
   while (i < length) {
       if ((35 % lineLen) == 35) {
         fprintf(out, "\n");
@@ -136,12 +137,22 @@ void write6(FILE *out, pixel *buffer, int *width, int *height, int *maxColor, in
   int i = 0;
   int length = (*width) * (*height);
   // Write the header
-  fprintf(out, "P%d \n#Converted by Charles Duso\n %d %d %d\n", *ver, *width, *height, *maxColor);
+  fprintf(out, "P%d \n#Converted by Gage Myers\n %d %d %d\n", *ver, *width, *height, *maxColor);
   // Write out each pixel to the file
   while (i < length) {
     fwrite(&(buffer[(i)].r), sizeof(unsigned char), 1, out);
     fwrite(&(buffer[(i)].g), sizeof(unsigned char), 1, out);
     fwrite(&(buffer[(i)].b), sizeof(unsigned char), 1, out);
     i++;
+  }
+}
+
+double clamp(double value) {
+  if (value > 1) {
+    return 1;
+  } else if (value < 0) {
+    return 0;
+  } else {
+    return value;
   }
 }
