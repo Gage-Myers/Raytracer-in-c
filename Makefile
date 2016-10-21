@@ -1,7 +1,7 @@
 all:
-	gcc raycast.c -o raycast -lm
+	gcc raycast.c -o raytrace -lm
 run:
-	./raycast 64 64 in.json out.ppm
+	./raytrace 128 128 in.json out.ppm
 clean:
 	rm raycast
 	clear
