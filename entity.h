@@ -1,7 +1,3 @@
-
-
-#define ENTITY
-
 // A structure that will hold enitities
 // read in from a JSON file
 
